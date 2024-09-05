@@ -67,4 +67,118 @@ class NewsController extends Controller
         }
     }
 
+    public function newsEntertainment($page, $number)
+    {
+        $api_key = env('NEWS_API_KEY');
+
+        $response = Http::get('https://newsapi.org/v2/top-headlines', [
+            'category' => 'entertainment',
+            'country' => 'us',
+            'apiKey' => $api_key,
+            'language' => 'en',
+        ]);
+
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json([
+                'error' => 'Error fetching news',
+                'status' => $response->status()
+            ], $response->status());
+        }
+    }
+
+    public function newsBusiness($page, $number)
+    {
+        $api_key = env('NEWS_API_KEY');
+
+        $response = Http::get('https://newsapi.org/v2/top-headlines', [
+            'category' => 'business',
+            'country' => 'us',
+            'apiKey' => $api_key,
+            'pageSize' => $number,
+            'language' => 'en',
+            'page' => $page
+        ]);
+
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json([
+                'error' => 'Error fetching news',
+                'status' => $response->status()
+            ], $response->status());
+        }
+    }
+
+    public function newsHealth($page, $number)
+    {
+        $api_key = env('NEWS_API_KEY');
+
+        $response = Http::get('https://newsapi.org/v2/top-headlines', [
+            'category' => 'health',
+            'country' => 'us',
+            'apiKey' => $api_key,
+            'pageSize' => $number,
+            'language' => 'en',
+            'page' => $page
+        ]);
+
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json([
+                'error' => 'Error fetching news',
+                'status' => $response->status()
+            ], $response->status());
+        }
+    }
+
+    public function newsScience($page, $number)
+    {
+        $api_key = env('NEWS_API_KEY');
+
+        $response = Http::get('https://newsapi.org/v2/top-headlines', [
+            'category' => 'science',
+            'country' => 'us',
+            'apiKey' => $api_key,
+            'pageSize' => $number,
+            'language' => 'en',
+            'page' => $page
+        ]);
+
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json([
+                'error' => 'Error fetching news',
+                'status' => $response->status()
+            ], $response->status());
+        }
+    }
+
+    public function newsSports($page, $number)
+    {
+        $api_key = env('NEWS_API_KEY');
+
+        $response = Http::get('https://newsapi.org/v2/top-headlines', [
+            'category' => 'sports',
+            'country' => 'us',
+            'apiKey' => $api_key,
+            'pageSize' => $number,
+            'language' => 'en',
+            'page' => $page
+        ]);
+
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json([
+                'error' => 'Error fetching news',
+                'status' => $response->status()
+            ], $response->status());
+        }
+    }
+
+
 }
