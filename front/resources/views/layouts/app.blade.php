@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'MyApp')</title>
     @vite('resources/css/app.css')
+    @livewireStyles
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
     <x-navbar />
     
     <main class="flex-grow">
@@ -15,5 +16,6 @@
     
     <x-footer />
     @vite('resources/js/app.js')
+    @livewireScripts
 </body>
 </html>

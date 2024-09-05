@@ -1,6 +1,3 @@
-<link rel="icon"
-    href="https://cdn.icon-icons.com/icons2/1603/PNG/512/news-newspaper-media-paper-press-article_108607.png"
-    type="image/x-icon">
 <div class="navbar bg-sky-600">
     <div class="navbar-start">
         <div class="dropdown">
@@ -18,9 +15,10 @@
                 </li>
             </ul>
         </div>
-        <a class="btn btn-ghost text-white text-xl">
+        <a class="btn btn-ghost text-white text-xl" href="/">
             <i class="fas fa-newspaper"></i>
-            Noticias</a>
+            Noticias
+        </a>
     </div>
     <div class="navbar-center hidden lg:flex text-white">
         <ul class="menu menu-horizontal px-1">
@@ -38,16 +36,6 @@
             </li>
         </ul>
     </div>
-    <div class="navbar-end">
-        <a class="btn mr-1" href="/login">
-            <i class="fas fa-sign-in-alt"></i>
-            Acceder</a>
 
-        <a class="btn">
-            <i class="fas fa-user-plus"></i>
-            Registrarse</a>
-        <a class="btn">
-            <i class="fas fa-sign-out-alt"></i>
-            Cerrar Sesion</a>
-    </div>
+    @livewire('inicio')
 </div>
