@@ -15,7 +15,6 @@ class CardList extends Component
         $apiUrl = env('API');
         $token = session('api_token');
 
-        // verificar si en la session esta el token
         if (!session()->has('api_token')) {
             $response = Http::get($apiUrl . '/news-index');
             $this->news = $response->json()['articles'];

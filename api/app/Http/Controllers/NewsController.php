@@ -44,7 +44,27 @@ class NewsController extends Controller
         }
     }
 
+    public function newsWithCategories($category, $page, $number)
+    {
+        $api_key = env('NEWS_API_KEY');
 
+        $response = Http::get('https://newsapi.org/v2/top-headlines', [
+            'category' => $category,
+            'country' => 'us',
+            'apiKey' => $api_key,
+            'pageSize' => $number,
+            'language' => 'en',
+            'page' => $page
+        ]);
 
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json([
+                'error' => 'Error fetching news',
+                'status' => $response->status()
+            ], $response->status());
+        }
+    }
 
 }
