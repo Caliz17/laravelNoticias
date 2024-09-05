@@ -1,8 +1,8 @@
 <!-- resources/views/components/card.blade.php -->
 @props(['route', 'image', 'title', 'description', 'loading' => 'lazy'])
 
-<a href="{{ $route }}" class="block max-w-sm rounded bg-sky-500 p-2 m-2 overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-    <img class="w-full h-48 object-cover" loading="{{ $loading }}" src="{{ $image }}" alt="Card image">
+<a href="{{ $route }}" class="block w-full max-w-sm rounded bg-sky-500 p-2 m-2 overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105" style="width: 100% !important;">
+    <img class="w-full h-48 object-cover" loading="{{ $loading }}" src="{{ $image }}" alt="Card image" style="width: 100% !important;">
     <div class="px-4 py-4">
         <div class="font-bold text-xl mb-2">{{ $title }}</div>
         <p class="text-gray-700 text-base description">
