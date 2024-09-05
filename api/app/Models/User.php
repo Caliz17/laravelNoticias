@@ -8,17 +8,27 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory;
     use Notifiable;
 
-    public function getJWTIdentifier(): int
+    /**
+    * Obtener el identificador que se almacena en el JWT.
+    *
+    * @return mixed
+    */
+    public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return $this->getKey(); // Generalmente es la clave primaria (id)
     }
 
-    public function getJWTCustomClaims(): array
+    /**
+     * Devolver un arreglo con cualquier reclamo personalizado que quieras agregar al JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
     {
         return [];
     }
