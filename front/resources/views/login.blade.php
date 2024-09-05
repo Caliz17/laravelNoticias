@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-    <section >
+    <section>
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:h-screen">
             <div
                 class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -11,7 +11,9 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Ingresa a tu cuenta
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form class="space-y-4 md:space-y-6" action="/access" method="POST">
+                        @csrf
+                        @method('POST')
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo
                                 electronico</label>
@@ -27,11 +29,8 @@
                                 required="">
                         </div>
 
-                        <a href="#"
-                            class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot
-                            password?</a>
                         <button type="submit"
-                            class="w-full text-white bg-blue-500 p-5 hover:bg-blue-600 font-medium rounded-lg text-sm  text-center"
+                            class="w-full text-white bg-blue-500 p-4 hover:bg-blue-600 font-medium rounded-lg text-sm  text-center"
                             data-toggle="tooltip" data-placement="top" title="Ingresar">
                             <i class="fas fa-sign-in-alt"></i>
                             Ingresar</button>
@@ -59,7 +58,6 @@
                                 <i class="fab fa-google"> </i>
                             </a>
                         </div>
-                    </form>
                     </form>
                 </div>
             </div>

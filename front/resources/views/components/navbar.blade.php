@@ -37,5 +37,18 @@
         </ul>
     </div>
 
-    @livewire('inicio')
+    <div class="navbar-end">
+        @if (session('api_token'))
+            <a href="/logout" class="btn btn-ghost text-white text-xl">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar Sesión
+            </a>
+        @else
+            <a href="/login" class="btn btn-ghost text-white text-xl">
+                <i class="fas fa-sign-in-alt"></i>
+                Acceder
+            </a>
+        @endif
+    </div>
+
 </div>
