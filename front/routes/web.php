@@ -14,13 +14,6 @@ Route::get('/google-auth/redirect', function () {
 
 Route::get('/google-auth/callback', [User::class, 'handleGoogleCallback']);
 
-// Route::get('/google-auth/callback', function () {
-//     $user = Socialite::driver('google')->stateless()->user();
-    
-
-// });
-
-
 Route::get('/login', [User::class, 'getLogin'])
     ->name('login.index');
 

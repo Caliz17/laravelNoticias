@@ -16,4 +16,9 @@ Route::group(['middleware' => 'api'], function ($routes) {
     Route::post('login-google', [UserController::class,'loginGoogle']);
 
     Route::get('news-index', [NewsController::class,'index']);
+
+    Route::group(['middleware' => 'auth:api'], function ($routes) {
+        Route::get('news-show/{page}/{number}', [NewsController::class,'showGeneral']);
+    });
+
 });
