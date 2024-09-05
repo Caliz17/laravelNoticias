@@ -38,13 +38,15 @@
     </div>
 
     <div class="navbar-end">
+
         @if (session('api_token'))
-            <a href="/logout" class="btn btn-ghost text-white text-xl">
+            <a href="/logout" class="btn btn-ghost text-sky-200 text-sm">
+                <h1 class="text-white text-sm">{{ session('name') }}</h1>
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar Sesión
             </a>
         @else
-            <a href="/login" class="btn btn-ghost text-white text-xl">
+            <a href="/login" class="btn btn-ghost text-white text-sm">
                 <i class="fas fa-sign-in-alt"></i>
                 Acceder
             </a>

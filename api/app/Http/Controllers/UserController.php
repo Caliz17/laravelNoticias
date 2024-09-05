@@ -164,6 +164,7 @@ class UserController extends Controller
         return response()->json([
             'token' => JWTAuth::fromUser($user),
             'message' => 'Login successful',
+            'name'=> strtoupper($user->name),
         ]);
     }
 

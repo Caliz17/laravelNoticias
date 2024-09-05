@@ -56,8 +56,8 @@ class User extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-
             session(['api_token' => $data['token']]);
+            session(['name' => $data['name']]);
 
             return redirect()->route('home')->with('success', 'Login successful');
         } else {
