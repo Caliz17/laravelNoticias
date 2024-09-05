@@ -3,9 +3,15 @@
         @foreach ($news as $new)
             <x-card image="{{ $new['urlToImage'] }}" title="{{ $new['title'] }}" description="{{ $new['description'] }}"
                 loading="lazy">
+                @if ($new['source']['name'] != null)
+                    <span
+                        class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                        {{ $new['source']['name'] }}
+                    </span>
+                @endif
                 <span
-                    class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {{ $new['source']['name'] }}
+                    class="inline-block bg-violet-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                    {{ Date::parse($new['publishedAt'])->diffForHumans() }}
                 </span>
             </x-card>
         @endforeach
