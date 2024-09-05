@@ -1,3 +1,6 @@
+<link rel="icon"
+    href="https://cdn.icon-icons.com/icons2/1603/PNG/512/news-newspaper-media-paper-press-article_108607.png"
+    type="image/x-icon">
 <div class="navbar bg-sky-600">
     <div class="navbar-start">
         <div class="dropdown">
