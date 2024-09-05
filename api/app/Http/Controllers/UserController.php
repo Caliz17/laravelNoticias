@@ -101,4 +101,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function userProfile()
+    {
+        if (auth()->user()) {
+            return response()->json([
+                'status' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Perfil de usuario',
+                'data' => auth()->user(),
+            ]);
+        } else {
+            return response()->json([
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'success' => false,
+                'message' => 'No autorizado',
+            ]);
+        }
+    }
+
 }
