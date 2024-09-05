@@ -35,13 +35,13 @@
                         Categorias
                     </summary>
                     <ul class="rounded bg-sky-500">
-                        <li><a href="/general"><i class="fas fa-globe"></i> General</a></li>
-                        <li><a href="/entertainment"><i class="fas fa-film"></i> Entretenimiento</a></li>
-                        <li><a href="/business"><i class="fas fa-building"></i> Negocios</a></li>
-                        <li><a href="/health"><i class="fas fa-flask"></i> Salud </a></li>
-                        <li><a href="/technology"><i class="fas fa-laptop"></i> Tecnología</a></li>
-                        <li><a href="/sports"><i class="fas fa-futbol"></i> Deportes</a></li>
-                        <li><a href="/science"><i class="fas fa-flask"></i> Ciencia</a></li>
+                        <li><a href="/"><i class="fas fa-globe"></i> General</a></li>
+                        <li><a href="/news/entertainment"><i class="fas fa-film"></i> Entretenimiento</a></li>
+                        <li><a href="/news/business"><i class="fas fa-building"></i> Negocios</a></li>
+                        <li><a href="/news/health"><i class="fas fa-flask"></i> Salud </a></li>
+                        <li><a href="/news/technology"><i class="fas fa-laptop"></i> Tecnología</a></li>
+                        <li><a href="/news/sports"><i class="fas fa-futbol"></i> Deportes</a></li>
+                        <li><a href="/news/science"><i class="fas fa-flask"></i> Ciencia</a></li>
                     </ul>
                 </details>
             </li>
