@@ -12,5 +12,5 @@ Route::group(['middleware' => 'api'], function ($routes) {
     Route::post('register-user', [UserController::class,'userRegister']);
     Route::post('login-user', [UserController::class,'userLogin']);
     Route::get('user-profile', [UserController::class,'userProfile']);
-
+    Route::post('login-google', [UserController::class,'loginGoogle']);
 });

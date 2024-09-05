@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -58,10 +59,10 @@ class UserController extends Controller
 
     public function userLogin(Request $request)
     {
-        $data = $request->all();
+        $data = $request->only('email', 'password'); // Asegúrate de que solo se envíen email y password
 
         // Validación
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($data, [
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
@@ -76,12 +77,20 @@ class UserController extends Controller
             ]);
         }
 
-        // Intentar autenticación
-        if (!$token = Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+        // Intentar autenticación con JWT
+        try {
+            if (!$token = JWTAuth::attempt($data)) {
+                return response()->json([
+                    'status' => 401,
+                    'success' => false,
+                    'message' => 'Credenciales inválidas',
+                ]);
+            }
+        } catch (JWTException $e) {
             return response()->json([
-                'status' => 401,
+                'status' => 500,
                 'success' => false,
-                'message' => 'Credenciales inválidas',
+                'message' => 'No se pudo crear el token',
             ]);
         }
 
@@ -118,5 +127,47 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function loginGoogle(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'google_id' => 'required|string',
+            'google_token' => 'required|string',
+            'email' => 'required|email',
+            'name' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = $validator->validated();
+
+        $user = User::where('email', $data['email'])->first();
+
+        if ($user) {
+            $user->update([
+                'google_id' => $data['google_id'],
+                'google_token' => $data['google_token'],
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'google_id' => $data['google_id'],
+                'google_token' => $data['google_token'],
+            ]);
+        }
+
+        return response()->json([
+            'token' => JWTAuth::fromUser($user),
+            'message' => 'Login successful',
+        ]);
+    }
+
+
+
 
 }
