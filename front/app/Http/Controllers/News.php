@@ -26,7 +26,7 @@ class News extends Controller
 
         $this->news = $response->json()['articles'];
 
-        return view('categories.entertainment');
+        return view('categories.entertainment', ['news' => $this->news]);
     }
 
     public function Business()
@@ -42,7 +42,7 @@ class News extends Controller
 
         $this->news = $response->json()['articles'];
 
-        return view('categories.business');
+        return view('categories.business', ['news' => $this->news]);
     }
 
     public function Health()
@@ -59,7 +59,7 @@ class News extends Controller
 
         $this->news = $response->json()['articles'];
 
-        return view('categories.health');
+        return view('categories.health', ['news' => $this->news]);
     }
 
     public function Science()
@@ -76,7 +76,7 @@ class News extends Controller
 
         $this->news = $response->json()['articles'];
 
-        return view('categories.science');
+        return view('categories.science', ['news' => $this->news]);
     }
 
     public function Sports()
@@ -91,7 +91,7 @@ class News extends Controller
             'Authorization' => $token ? 'Bearer ' . $token : '',
         ])->get($apiUrl . '/news-sports/sports/'.$this->page.'/'. $this->number);
 
-        return view('categories.sports');
+        return view('categories.sports', ['news' => $this->news]);
     }
 
     public function Technology()
@@ -106,6 +106,6 @@ class News extends Controller
             'Authorization' => $token ? 'Bearer ' . $token : '',
         ])->get($apiUrl . '/news-technology/technology/'.$this->page.'/'. $this->number);
 
-        return view('categories.technology');
+        return view('categories.technology', ['news' => $this->news]);
     }
 }
