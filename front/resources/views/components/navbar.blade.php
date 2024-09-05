@@ -9,10 +9,17 @@
                 <li>
                     <a>Categorias</a>
                     <ul class="rounded bg-sky-500">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
+                        <li><a href="/general"><i class="fas fa-globe"></i> General</a></li>
+                        <li><a href="/world"><i class="fas fa-globe-americas"></i> Mundo</a></li>
+                        <li><a href="/nation"><i class="fas fa-flag"></i> Nación</a></li>
+                        <li><a href="/business"><i class="fas fa-building"></i> Negocios</a></li>
+                        <li><a href="/technology"><i class="fas fa-laptop"></i> Tecnología</a></li>
+                        <li><a href="/entertainment"><i class="fas fa-film"></i> Entretenimiento</a></li>
+                        <li><a href="/sports"><i class="fas fa-futbol"></i> Deportes</a></li>
+                        <li><a href="/science-and-health"><i class="fas fa-flask"></i> Ciencia y Salud</a></li>
                     </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
         </div>
         <a class="btn btn-ghost text-white text-xl" href="/">
@@ -20,7 +27,7 @@
             Noticias
         </a>
     </div>
-    <div class="navbar-center hidden lg:flex text-white">
+    <div class="navbar-center hidden lg:flex text-white ">
         <ul class="menu menu-horizontal px-1">
             <li>
                 <details>
@@ -29,8 +36,14 @@
                         Categorias
                     </summary>
                     <ul class="rounded bg-sky-500">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
+                        <li><a href="/general"><i class="fas fa-globe"></i> General</a></li>
+                        <li><a href="/world"><i class="fas fa-globe-americas"></i> Mundo</a></li>
+                        <li><a href="/nation"><i class="fas fa-flag"></i> Nación</a></li>
+                        <li><a href="/business"><i class="fas fa-building"></i> Negocios</a></li>
+                        <li><a href="/technology"><i class="fas fa-laptop"></i> Tecnología</a></li>
+                        <li><a href="/entertainment"><i class="fas fa-film"></i> Entretenimiento</a></li>
+                        <li><a href="/sports"><i class="fas fa-futbol"></i> Deportes</a></li>
+                        <li><a href="/science-and-health"><i class="fas fa-flask"></i> Ciencia y Salud</a></li>
                     </ul>
                 </details>
             </li>
