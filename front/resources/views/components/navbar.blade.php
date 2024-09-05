@@ -1,4 +1,4 @@
-<div class="navbar bg-sky-600">
+<div class="navbar bg-sky-600 z-50">
     <div class="navbar-start">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">

@@ -43,4 +43,8 @@ Route::group(['prefix' => 'news'], function () {
 
     Route::get('/technology', [News::class, 'Technology'])
         ->name('technology.index');
+
+    Route::post('/news/detail', [News::class, 'detail'])
+        ->name('news.detail');
+
 });

@@ -108,4 +108,17 @@ class News extends Controller
 
         return view('categories.technology', ['news' => $this->news]);
     }
+
+    public function detail(Request $request)
+    {
+        $newsData = json_decode($request->input('newsData'), true);
+        $relatedNews = json_decode($request->input('relatedNews'), true);
+
+        return view('detail', [
+            'news' => $newsData,
+            'relatedNews' => $relatedNews,
+        ]);
+    }
+
+
 }
