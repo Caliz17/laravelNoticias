@@ -52,7 +52,7 @@
                                 data-toggle="tooltip" data-placement="top" title="GitHub">
                                 <i class="fab fa-github"> </i>
                             </a>
-                            <a href="#"
+                            <a href="/google-auth/redirect"
                                 class="flex items-center justify-center w-full px-4 py-2 text-white bg-red-500 hover:bg-red-600 font-medium rounded-lg text-sm"
                                 data-toggle="tooltip" data-placement="top" title="Google">
                                 <i class="fab fa-google"> </i>
