@@ -9,12 +9,16 @@
     @livewireStyles
 </head>
 
-<body class="flex flex-col min-h-screen bg-gray-50 ">
+<body class="flex flex-col min-h-screen bg-gray-50">
     <x-navbar />
 
-    <main class="flex-grow">
-        @yield('content')
-    </main>
+    <div class="flex flex-grow">
+        <x-sidebar />
+
+        <main class="flex-grow p-4">
+            @yield('content')
+        </main>
+    </div>
 
     <x-footer />
     @vite('resources/js/app.js')
