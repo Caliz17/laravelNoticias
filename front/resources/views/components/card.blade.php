@@ -7,7 +7,7 @@
 
     <button type="submit"
         class="block max-w-sm rounded bg-gray-100 p-2 m-2 overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-        <img class="w-full h-48 object-cover" loading="lazy" src="{{ $image }}" alt="Card image">
+        <img class="w-full h-48 object-cover rounded" loading="lazy" src="{{ $image }}" alt="Card image">
         <div class="px-4 py-4">
             <div class="font-bold text-xl mb-2">{{ $title }}</div>
             <p class="text-gray-700 text-base description">

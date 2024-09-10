@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mx-auto text-center mt-10">
-        <h1 class="text-5xl text-white font-bold">Entretenimiento</h1>
+        <h1 class="text-5xl text-sky-700 font-bold">Entretenimiento</h1>
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @if (count($news) == 0)
