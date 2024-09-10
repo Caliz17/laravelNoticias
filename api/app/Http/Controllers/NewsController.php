@@ -137,7 +137,7 @@ class NewsController extends Controller
             $response = Http::get('https://newsapi.org/v2/everything', [
                 'q' => $title,
                 'apiKey' => $api_key,
-                'pageSize' => 10,
+                'pageSize' => 50,
                 'language' => 'en',
                 'page' => 1
             ]);
@@ -145,7 +145,7 @@ class NewsController extends Controller
             if ($response->successful()) {
                 $articles = $response->json('articles');
                 $filteredArticles = array_filter($articles, function ($article) {
-                    return !is_null($article['urlToImage']);
+                    return !is_null($article['urlToImage']) && $article['urlToImage'] !== '';
                 });
 
                 $limitedArticles = array_slice($filteredArticles, 0, 3);
