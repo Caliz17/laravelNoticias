@@ -40,7 +40,7 @@
 
         @if (session('api_token'))
             <a href="/logout" class="btn btn-ghost text-sky-200 bg-red-500 hover:bg-red-700 text-sm">
-                <h1 class="text-white text-xl">{{ session('name') }}</h1>
+                <h1 class="text-white text-sm ">{{ session('name') }}</h1>
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar Sesión
             </a>
