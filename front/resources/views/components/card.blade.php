@@ -1,4 +1,4 @@
-@props(['route', 'image', 'title', 'description', 'source', 'publishedAt', 'newsData', 'relatedNews'])
+@props(['route', 'image', 'title', 'description', 'source', 'publishedAt', 'newsData'])
 
 @php
     $truncatedTitle = strlen($title) > 60 ? substr($title, 0, 60) . '...' : $title;
@@ -8,7 +8,6 @@
 <form action="{{ $route }}" method="POST" class="news-form">
     @csrf
     <input type="hidden" name="newsData" value="{{ json_encode($newsData) }}">
-    <input type="hidden" name="relatedNews" class="related-news-input" value="{{ $relatedNews }}">
 
     <button type="submit"
         class="block max-w-sm rounded bg-gray-100 p-2 m-2 overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">

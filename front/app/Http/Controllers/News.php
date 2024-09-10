@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class News extends Controller
 {
@@ -14,6 +15,7 @@ class News extends Controller
 
     public function Entertainment()
     {
+        Carbon::setLocale('es');
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
@@ -31,6 +33,7 @@ class News extends Controller
 
     public function Business()
     {
+        Carbon::setLocale('es');
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
@@ -48,6 +51,7 @@ class News extends Controller
 
     public function Health()
     {
+        Carbon::setLocale('es');
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
@@ -66,6 +70,7 @@ class News extends Controller
 
     public function Science()
     {
+        Carbon::setLocale('es');
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
@@ -84,6 +89,7 @@ class News extends Controller
 
     public function Sports()
     {
+        Carbon::setLocale('es');
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
@@ -102,6 +108,7 @@ class News extends Controller
 
     public function Technology()
     {
+        Carbon::setLocale('es');
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
@@ -119,12 +126,26 @@ class News extends Controller
 
     public function detail(Request $request)
     {
+        $data = json_decode($request->input('newsData'));
+        $title = $data->title;
+
+        $words = explode(' ', $title);
+
+        $firstWord = $words[0];
+
+        $apiUrl = env('API');
+        $token = session('api_token');
+        $response = Http::withHeaders([
+            'Authorization' => $token ? 'Bearer ' . $token : '',
+        ])->get($apiUrl . '/news-suggestions/', 'title='.$firstWord);
+        $suggestions = $response['data'];
+
+        Carbon::setLocale('es');
         $newsData = json_decode($request->input('newsData'), true);
-        $relatedNews = json_decode($request->input('relatedNews'), true);
 
         return view('detail', [
             'news' => $newsData,
-            'relatedNews' => $relatedNews,
+            'suggestions' => $suggestions
         ]);
     }
 

@@ -1,4 +1,4 @@
-<aside class="w-full lg:w-64 bg-gray-800 text-white p-4 lg:block hidden">
+<aside class="w-full lg:w-64 bg-gray-800 text-white p-4 lg:block hidden sticky top-16 ">
     <div>
         <h2 class="text-lg font-semibold mb-2 flex items-center space-x-2">
             <i class="fas fa-folder"></i>
