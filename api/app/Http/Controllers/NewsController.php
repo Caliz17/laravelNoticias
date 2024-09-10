@@ -128,4 +128,45 @@ class NewsController extends Controller
         }
     }
 
+    public function suggestionsWithTitle(Request $request)
+    {
+        $api_key = env('NEWS_API_KEY');
+        $title = $request->title;
+
+        try {
+            $response = Http::get('https://newsapi.org/v2/everything', [
+                'q' => $title,
+                'apiKey' => $api_key,
+                'pageSize' => 10,
+                'language' => 'en',
+                'page' => 1
+            ]);
+
+            if ($response->successful()) {
+                $articles = $response->json('articles');
+                $filteredArticles = array_filter($articles, function ($article) {
+                    return !is_null($article['urlToImage']);
+                });
+
+                $limitedArticles = array_slice($filteredArticles, 0, 3);
+                return response()->json([
+                    'success' => true,
+                    'data' => $limitedArticles
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Error fetching news',
+                    'status' => $response->status()
+                ], $response->status());
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'An error occurred while fetching news',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
 }

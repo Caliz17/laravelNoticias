@@ -20,5 +20,6 @@ Route::group(['middleware' => 'api'], function ($routes) {
     Route::group(['middleware' => 'auth:api'], function ($routes) {
         Route::get('news-show', [NewsController::class,'showGeneral']);
         Route::get('news-category/{category}', [NewsController::class,'newsWithCategories']);
+        Route::get('news-suggestions', [NewsController::class,'suggestionsWithTitle']);
     });
 });
