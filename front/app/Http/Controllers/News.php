@@ -126,28 +126,40 @@ class News extends Controller
 
     public function detail(Request $request)
     {
-        $data = json_decode($request->input('newsData'));
-        $title = $data->title;
+        try {
+            $data = json_decode($request->input('newsData'));
+            $title = $data->title;
 
-        $words = explode(' ', $title);
+            $words = explode(' ', $title);
+            $firstWord = $words[0];
 
-        $firstWord = $words[0];
+            $apiUrl = env('API');
+            $token = session('api_token');
+            $response = Http::withHeaders([
+                'Authorization' => $token ? 'Bearer ' . $token : '',
+            ])->get($apiUrl . '/news-suggestions/', ['title' => $firstWord]);
 
-        $apiUrl = env('API');
-        $token = session('api_token');
-        $response = Http::withHeaders([
-            'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-suggestions/', 'title='.$firstWord);
-        $suggestions = $response['data'];
+            if ($response->successful()) {
+                $suggestions = $response['data'];
+            } else {
+                $suggestions = [];
+            }
 
-        Carbon::setLocale('es');
-        $newsData = json_decode($request->input('newsData'), true);
+            Carbon::setLocale('es');
+            $newsData = json_decode($request->input('newsData'), true);
 
-        return view('detail', [
-            'news' => $newsData,
-            'suggestions' => $suggestions
-        ]);
+            return view('detail', [
+                'news' => $newsData,
+                'suggestions' => $suggestions
+            ]);
+
+        } catch (\Throwable $e) {
+            Log::error('Error al obtener detalles de la noticia: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema al obtener los detalles de la noticia. Inténtalo de nuevo más tarde.');
+        }
     }
+
 
 
 }

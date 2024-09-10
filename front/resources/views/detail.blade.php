@@ -36,22 +36,38 @@
         <!-- Noticias sugeridas -->
         <div class="max-w-6xl mx-auto mt-10">
             <h3 class="text-3xl font-bold text-gray-800 mb-6">Noticias Sugeridas</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($suggestions as $suggestion)
-                    <form action="{{ route('news.detail') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="newsData" value="{{ json_encode($suggestion) }}">
-                        <input type="hidden" name="suggestion" value="{{ json_encode($suggestion) }}">
-                        <div class="bg-gray-700 p-4 rounded-lg shadow-md">
-                            <img class="rounded-lg w-full h-32 object-cover mb-4" src="{{ $suggestion['urlToImage'] }}"
-                                alt="{{ $suggestion['title'] }}">
-                            <h4 class="text-xl font-bold text-white mb-2">{{ $suggestion['title'] }}</h4>
-                            <button type="submit" class="text-blue-500 hover:underline">Ver más</button>
-                        </div>
-                    </form>
-                @endforeach
-            </div>
+            @if (empty($suggestions))
+                <div class="w-full">
+                    <p class="text-sky-800 mt-3 text-base">
+                        Para visualizar sugerencias, debes
+                        <a href="{{ route('login.index') }}"
+                            class="text-success text-xl font-semibold underline">acceder</a>
+                        o
+                        <a href="{{ route('form.index') }}"
+                            class="text-info text-xl font-semibold underline">registrarte</a>
+                    </p>
+                </div>
+            @else
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    @foreach ($suggestions as $suggestion)
+                        <form action="{{ route('news.detail') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="newsData" value="{{ json_encode($suggestion) }}">
+                            <input type="hidden" name="suggestion" value="{{ json_encode($suggestion) }}">
+                            <div class="bg-gray-700 p-4 rounded-lg shadow-md">
+                                <img class="rounded-lg w-full h-32 object-cover mb-4" src="{{ $suggestion['urlToImage'] }}"
+                                    alt="{{ $suggestion['title'] }}">
+                                <h4 class="text-xl font-bold text-white mb-2">{{ $suggestion['title'] }}</h4>
+                                <button type="submit" class="text-blue-500 hover:underline">Ver más</button>
+                            </div>
+                        </form>
+                    @endforeach
+
+                </div>
+            @endif
         </div>
+    </div>
 
     </div>
 @endsection
