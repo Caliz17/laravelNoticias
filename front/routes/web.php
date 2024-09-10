@@ -24,6 +24,12 @@ Route::post('/access', [User::class, 'login'])
 Route::get('/logout', [User::class, 'logout'])
     ->name('login.logout');
 
+Route::get('/form', [User::class, 'formUser'])
+    ->name('form.index');
+
+Route::post('/register', [User::class, 'registerUser'])
+    ->name('form.register');
+
 // grupo de rutas para el controlador de noticias
 Route::group(['prefix' => 'news'], function () {
     Route::get('/entertainment', [News::class, 'Entertainment'])

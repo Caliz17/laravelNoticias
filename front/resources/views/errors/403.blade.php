@@ -9,9 +9,9 @@
         <p class="mb-3 text-lg">No tienes permisos para acceder a esta página.</p>
         <p class="text-sky-800 mt-3 text-base">
             Para visualizar todas las categorías, por favor
-            <a href="{{ route('login.index') }}" class="text-warning font-semibold underline">accede</a>
+            <a href="{{ route('login.index') }}" class="text-success text-xl font-semibold underline">accede</a>
             o
-            <a href="{{ route('login.index') }}" class="text-warning font-semibold underline">regístrate</a>
+            <a href="{{ route('form.index') }}" class="text-info text-xl font-semibold underline">regístrate</a>
         </p>
     </div>
 @endsection

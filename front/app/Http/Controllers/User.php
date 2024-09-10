@@ -23,20 +23,22 @@ class User extends Controller
             'password' => $request->password,
         ]);
 
-        if ($response->successful()) {
+        if ($response->object()->status === 200) {
             $data = $response->json();
 
             session(['api_token' => $data['token']]);
+            session(['name' => $data['name']]);
 
             return redirect()->route('home')->with('success', 'Login successful');
         } else {
-            return back()->withErrors(['error' => 'Login failed. Please check your credentials.']);
+            return back()->withErrors(['error' => 'Error. Por favor corrobora tus datos.']);
         }
     }
 
     public function logout()
     {
         session()->forget('api_token');
+        session()->forget('name');
         Auth::logout();
         return redirect()->route('home')->with('success', 'Logged out successfully');
     }
@@ -61,7 +63,28 @@ class User extends Controller
 
             return redirect()->route('home')->with('success', 'Login successful');
         } else {
-            return back()->withErrors(['error' => 'Login failed. Please check your credentials.']);
+            return back()->withErrors(['error' => 'Registro Fallido. Por favor revisar sus credenciales.']);
+        }
+    }
+
+    public function formUser(){
+        return view('form-user');
+    }
+
+    public function registerUser(Request $request){
+        $apiUrl = env('API');
+
+        $response = Http::post($apiUrl . '/register-user', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'password_confirmation' => $request->password_confirmation,
+        ]);
+
+        if ($response->successful()) {
+            return redirect()->route('login.index')->with('success', 'User registered successfully');
+        } else {
+            return back()->withErrors(['error' => 'Registro Fallido. Por favor revisar sus credenciales.']);
         }
     }
 }
