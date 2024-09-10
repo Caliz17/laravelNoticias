@@ -1,5 +1,10 @@
 @props(['route', 'image', 'title', 'description', 'source', 'publishedAt', 'newsData', 'relatedNews'])
 
+@php
+    $truncatedTitle = strlen($title) > 60 ? substr($title, 0, 60) . '...' : $title;
+    $truncatedDescription = strlen($description) > 50 ? substr($description, 0, 50) . '...' : $description;
+@endphp
+
 <form action="{{ $route }}" method="POST" class="news-form">
     @csrf
     <input type="hidden" name="newsData" value="{{ json_encode($newsData) }}">
@@ -9,9 +14,9 @@
         class="block max-w-sm rounded bg-gray-100 p-2 m-2 overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
         <img class="w-full h-48 object-cover rounded" loading="lazy" src="{{ $image }}" alt="Card image">
         <div class="px-4 py-4">
-            <div class="font-bold text-xl mb-2">{{ $title }}</div>
+            <div class="font-bold text-xl mb-2 text-justify">{{ $truncatedTitle }}</div>
             <p class="text-gray-700 text-base description">
-                {{ $description }}
+                {{ $truncatedDescription }}
             </p>
         </div>
         <div class="px-4 py-2">
@@ -27,15 +32,3 @@
         </div>
     </button>
 </form>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const descriptionElements = document.querySelectorAll('.description');
-        descriptionElements.forEach(element => {
-            let text = element.textContent;
-            if (text.length > 80) {
-                element.textContent = text.slice(0, 80) + '...';
-            }
-        });
-    });
-</script>
