@@ -10,21 +10,21 @@ class News extends Controller
     public $news = [];
     public $page = 1;
     public $number = 5;
+    public $category = '';
 
     public function Entertainment()
     {
-        //validar si el usuario esta logueado en session
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
+        $category = 'entertainment';
 
         $apiUrl = env('API');
         $token = session('api_token');
         $response = Http::withHeaders([
             'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-entertaiment/entertaiment/'.$this->page.'/'. $this->number);
-
-        $this->news = $response->json()['articles'];
+        ])->get($apiUrl . '/news-category/'.$category);
+        $this->news = $response['data'];
 
         return view('categories.entertainment', ['news' => $this->news]);
     }
@@ -34,13 +34,14 @@ class News extends Controller
         if (!session()->has('api_token')) {
             return view('errors.403');
         }
+        $category = 'business';
         $apiUrl = env('API');
         $token = session('api_token');
         $response = Http::withHeaders([
             'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-business/business/'.$this->page.'/'. $this->number);
+        ])->get($apiUrl . '/news-category/'.$category);
 
-        $this->news = $response->json()['articles'];
+        $this->news = $response['data'];
 
         return view('categories.business', ['news' => $this->news]);
     }
@@ -51,13 +52,14 @@ class News extends Controller
             return view('errors.403');
         }
 
+        $category = 'health';
         $apiUrl = env('API');
         $token = session('api_token');
         $response = Http::withHeaders([
             'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-health/health/'.$this->page.'/'. $this->number);
+        ])->get($apiUrl . '/news-category/'.$category);
 
-        $this->news = $response->json()['articles'];
+        $this->news = $response['data'];
 
         return view('categories.health', ['news' => $this->news]);
     }
@@ -68,13 +70,14 @@ class News extends Controller
             return view('errors.403');
         }
 
+        $category = 'science';
         $apiUrl = env('API');
         $token = session('api_token');
         $response = Http::withHeaders([
             'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-science/science/'.$this->page.'/'. $this->number);
+        ])->get($apiUrl . '/news-category/'.$category);
 
-        $this->news = $response->json()['articles'];
+        $this->news = $response['data'];
 
         return view('categories.science', ['news' => $this->news]);
     }
@@ -85,11 +88,14 @@ class News extends Controller
             return view('errors.403');
         }
 
+        $category = 'sports';
         $apiUrl = env('API');
         $token = session('api_token');
         $response = Http::withHeaders([
             'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-sports/sports/'.$this->page.'/'. $this->number);
+        ])->get($apiUrl . '/news-category/'.$category);
+
+        $this->news = $response['data'];
 
         return view('categories.sports', ['news' => $this->news]);
     }
@@ -100,12 +106,14 @@ class News extends Controller
             return view('errors.403');
         }
 
+        $category = 'technology';
         $apiUrl = env('API');
         $token = session('api_token');
         $response = Http::withHeaders([
             'Authorization' => $token ? 'Bearer ' . $token : '',
-        ])->get($apiUrl . '/news-technology/technology/'.$this->page.'/'. $this->number);
+        ])->get($apiUrl . '/news-category/'.$category);
 
+        $this->news = $response['data'];
         return view('categories.technology', ['news' => $this->news]);
     }
 
